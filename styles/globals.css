@@ -1,29 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  #__next {
-    @apply contents;
-  }
-
-  html {
-    @apply h-full scroll-smooth antialiased;
-  }
-
-  body {
-    @apply flex h-full flex-col text-neutral-600;
-  }
-
-  main {
-    @apply grow;
-  }
-
-  .section {
-    @apply py-16;
-  }
-
-  .title {
-    @apply text-primary-400 font-serif tracking-wide;
-  }
-}

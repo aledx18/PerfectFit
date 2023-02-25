@@ -1,0 +1,29 @@
+[
+  {
+    "info": {
+      "detection": {
+        "object_detection": {
+          "status": "complete",
+          "data": {
+            "coco": {
+              "model_name": "coco",
+              "model_version": 1,
+              "schema_version": 1,
+              "tags": {
+                "books": [
+                  {
+                    "categories": ["kitchen"],
+                    "confidence": 0.9861887097358704,
+                    "bounding-box": []
+                  }
+                ],
+                "clock": [{}],
+                "cup": [{}]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
