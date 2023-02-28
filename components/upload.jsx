@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { Cloudinary } from '@cloudinary/url-gen'
-import { limitFill } from '@cloudinary/url-gen/actions/resize'
 
 export default async function upload({ formData }) {
   const cl = new Cloudinary({
@@ -24,7 +23,7 @@ export default async function upload({ formData }) {
 
     const myImg = cl.image(response.data.public_id)
     // transformation
-    myImg.resize(limitFill().width(900).height(1808))
+
     // covierto a url
     const nuevaImg = myImg.toURL()
     const five = response.data.colors.slice(0, 5)

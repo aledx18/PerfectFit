@@ -1,17 +1,19 @@
 import { create } from 'zustand'
 
-const useFileStore = create(set => ({
+const useFileStore = create((set) => ({
   image: '',
-  imageGenerated: '',
+  imageOriginal: '',
   success: '',
+  imgObject: '',
   colors: [],
-  setColors: col =>
-    set(state => ({ colors: state.colors.concat(col.slice(0, 5)) })),
-  setImg: img => set(state => ({ image: state.image + img })),
-  setSuccess: acceptedFiles =>
-    set(state => ({ success: state.success + acceptedFiles })),
-  setImageGenerated: urlImageGene =>
-    set(state => ({ imageGenerated: state.imageGenerated + urlImageGene }))
+  setColors: (col) =>
+    set((state) => ({ colors: state.colors.concat(col.slice(0, 5)) })),
+  setImg: (img) => set((state) => ({ image: img })),
+  setImgObject: (img) => set((state) => ({ imgObject: img })),
+  setSuccess: (acceptedFiles) => set(() => ({ success: acceptedFiles })),
+  setLimpiar: set(() => ({ image: '' })),
+  setImageOriginal: (urlImageGene) =>
+    set(() => ({ imageOriginal: urlImageGene }))
 }))
 
 export default useFileStore
