@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { IconCloudinary } from '../components/Icons/icons'
 
 import useFileStore from './../components/StoreZustand/Store'
-import ResultImage from './../components/ResultImage'
+import ResultImage from 'components/ResultImage'
 
 const Homepage = () => {
   const { success } = useFileStore()

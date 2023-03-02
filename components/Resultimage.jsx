@@ -19,7 +19,7 @@ import {
 } from './../components/Icons/icons'
 import changeImage from './changeImage'
 
-function ResultImage() {
+export default function ResultImage() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [tab, setTab] = useState(0)
@@ -390,5 +390,3 @@ function ResultImage() {
     </div>
   )
 }
-
-export default ResultImage
