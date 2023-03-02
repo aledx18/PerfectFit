@@ -7,9 +7,9 @@ import Head from 'next/head'
 import { IconCloudinary } from '../components/Icons/icons'
 
 import useFileStore from './../components/StoreZustand/Store'
-import ResultImage from './../components/ResultImage'
+import Resul from '@/components/Resul'
 
-const Homepage = () => {
+export default function Homepage() {
   const { success } = useFileStore()
 
   return (
@@ -19,7 +19,7 @@ const Homepage = () => {
       </Head>
       <Provider>
         {success === 'Exito' ? (
-          <ResultImage />
+          <Resul />
         ) : (
           <>
             <div className='flex h-screen items-center justify-center flex-col pb-4'>
@@ -37,5 +37,3 @@ const Homepage = () => {
     </>
   )
 }
-
-export default Homepage
