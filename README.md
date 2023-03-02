@@ -8,7 +8,7 @@ A web application that allows users to crop and resize
                         their images to fit perfectly on various social media platforms. Users
                          can quickly adjust their images to match the specific dimensions
                        required for different social media ... 
-          Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+          
           
 <p align="center">
   <a href="https://perfect-fit-woad.vercel.app">
