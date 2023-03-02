@@ -1,57 +1,46 @@
+/* eslint-disable react/jsx-curly-newline */
 import Image from 'next/image'
 import useFileStore from '../components/StoreZustand/Store'
-import { redSocial } from './../components/const/constantes'
-
+import {
+  InstagramDescrip,
+  TwitterDescrip,
+  YoutubeDescrip
+} from '../components/const/constantes'
 import { Fragment, useState } from 'react'
-import { Dialog, Menu, Transition } from '@headlessui/react'
-import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity'
-import { Cloudinary } from '@cloudinary/url-gen'
-import { limitFill } from '@cloudinary/url-gen/actions/resize'
-import { IconImg, IconInsta, IconYoutube } from './../components/Icons/icons'
+import { Dialog, Transition, Tab, RadioGroup } from '@headlessui/react'
 
-const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false }
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+import {
+  IconImg,
+  IconInsta,
+  IconYoutube,
+  IconLinked,
+  IconTwitter,
+  IconDownload
+} from './../components/Icons/icons'
+import changeImage from './changeImage'
 
 function Resultimage() {
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [tab, setTab] = useState(0)
+
   const { imageOriginal, image, setImg, imgObject } = useFileStore()
 
-  const cl = new Cloudinary({
-    cloud: {
-      cloudName: 'dpbhmwmwm'
-    }
-  })
-
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-
-  function resizeImg(event, name) {
-    event.preventDefault()
-    const myImg = cl.image(imgObject.publicId)
-
-    // transformation
-    myImg.resize(limitFill().width(1080).height(1920).gravity(autoGravity()))
-    // covierto a url
-    const nuevaImg = myImg.toURL()
-
-    setImg(nuevaImg)
+  function HanddleChange(event) {
+    const publicId = imgObject.public_id
+    const ImageModif = changeImage(event.name, publicId, tab)
+    setImg(ImageModif)
   }
+
   function revertImage(event) {
     event.preventDefault()
     setImg(imageOriginal)
   }
+
   const myLoader = () => {
     setLoading(false)
   }
-  console.log(imgObject)
+
   return (
     <div className='bg-white'>
       <div>
@@ -104,61 +93,28 @@ function Resultimage() {
             </div>
           </Dialog>
         </Transition.Root>
-
+        {/* Mobile filter dialog */}
         <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-screen'>
-          <div className='flex items-baseline justify-between border-b border-gray-200 pt-10 pb-2'>
-            <h1 className='text-4xl font-bold tracking-tight text-gray-900'>
+          <div className='flex items-baseline justify-between border-b border-gray-200 pt-6'>
+            <h1 className='text-4xl font-bold tracking-tight text-gray-900 text-center'>
               Crop and Resize
             </h1>
-
-            <div className='flex items-center '>
-              <Menu as='div' className='relative inline-block text-left'>
-                <div>
-                  <Menu.Button className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
-                    Sort
-                  </Menu.Button>
-                </div>
-
-                <Transition
-                  as={Fragment}
-                  enter='transition ease-out duration-100'
-                  enterFrom='transform opacity-0 scale-95'
-                  enterTo='transform opacity-100 scale-100'
-                  leave='transition ease-in duration-75'
-                  leaveFrom='transform opacity-100 scale-100'
-                  leaveTo='transform opacity-0 scale-95'
-                >
-                  <Menu.Items className='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
-                    <div className='py-1'>
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
-                          {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current
-                                  ? 'font-medium text-gray-900'
-                                  : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
-                              )}
-                            >
-                              {option.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-
+            <div className='flex items-center'>
               <button
-                type='button'
-                className='-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7'
+                onClick={revertImage}
+                className='cursor-pointer relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 '
               >
-                <span className='sr-only'>View grid</span>
+                <span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0'>
+                  Reset Image
+                </span>
               </button>
+              <a
+                href={image}
+                download='asda.jpg'
+                className='cursor-pointer relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 '
+              >
+                <IconDownload />
+              </a>
               <button
                 type='button'
                 className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
@@ -170,82 +126,266 @@ function Resultimage() {
             </div>
           </div>
 
-          <section aria-labelledby='products-heading' className='pt-6 pb-10 '>
+          <section aria-labelledby='products-heading' className='pt-6 pb-5 '>
             <div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
-              {/* Filters */}
-
-              {/* Product grid */}
-
               <div className='lg:col-span-3'>
-                {/* Replace with your content */}
-                {/* /End replace */}
-                <div className='flex text-center justify-center p-auto rounded-lg border-4 border-dashed border-gray-200 lg:h-full'>
+                <div className='flex text-center relative m-auto justify-center p-auto rounded-lg border-4 border-dashed border-purple-500/75 lg:h-full'>
                   {loading && (
-                    <div class='flex items-center'>
-                      <div role='status'>
+                    <div
+                      role='status'
+                      className='space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center'
+                    >
+                      <div className='flex items-center justify-center w-full h-52 bg-gray-300 rounded sm:w-96 '>
                         <svg
-                          aria-hidden='true'
-                          class='inline w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
-                          viewBox='0 0 100 101'
-                          fill='none'
+                          className='w-12 h-12 text-gray-400'
                           xmlns='http://www.w3.org/2000/svg'
+                          aria-hidden='true'
+                          fill='currentColor'
+                          viewBox='0 0 640 512'
                         >
-                          <path
-                            d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
-                            fill='currentColor'
-                          />
-                          <path
-                            d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
-                            fill='currentFill'
-                          />
+                          <path d='M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z' />
                         </svg>
-                        <span class='sr-only'>Loading...</span>
                       </div>
                     </div>
                   )}
                   <Image
                     src={image}
-                    width={300}
-                    height={500}
+                    fill
                     onLoadingComplete={myLoader}
-                    alt='nose'
-                    className='w-auto h-auto rounded-lg aspect-auto py-1'
+                    alt='img'
+                    className='rounded-xl p-2 m-auto'
                   />
                 </div>
               </div>
 
-              <ul
-                role='list'
-                className='flex m-auto flex-wrap gap-2 border-b border-gray-200 p-5 text-sm font-medium text-gray-900'
-              >
-                <button onClick={revertImage} className='bg-slate-100'>
-                  Revertir cambios
-                </button>
-                {redSocial.map((red) => (
-                  <div key={red.id} className='text-center m-auto'>
-                    <div className='font-sans text-sm font-semibold p-0'>
-                      {red.name}
-                    </div>
-                    <button
-                      onClick={(e) => resizeImg(e, red.name)}
-                      className='w-full sm:w-auto bg-slate-200 hover:bg-purple-500  focus:outline-none text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5'
-                    >
-                      <div className='flex flex-col items-center p-0'>
-                        {red.icon === 'insta' ? <IconInsta /> : <IconYoutube />}
+              <div className='w-full max-w-md px-2 sm:px-0 rounded-xl'>
+                <Tab.Group onChange={setTab}>
+                  <Tab.List className='flex justify-between rounded-sm m-0'>
+                    <Tab className='p-2 m-0 hover:bg-orange-50 focus:border-b-2 border-orange-200 outline-none'>
+                      <IconInsta />
+                    </Tab>
+                    <Tab className='p-2 m-0 hover:bg-sky-50 focus:border-b-2 border-sky-200 outline-none'>
+                      <IconTwitter />
+                    </Tab>
+                    <Tab className='p-2 m-0 hover:bg-red-50 focus:border-b-2 border-red-200 outline-none'>
+                      <IconYoutube />
+                    </Tab>
+                    <Tab className='p-2 m-0 hover:bg-blue-100 focus:border-b-2 border-blue-400 outline-none'>
+                      <IconLinked />
+                    </Tab>
+                  </Tab.List>
+                  <Tab.Panels className='mt-2'>
+                    <Tab.Panel className='rounded-xl bg-orange-100'>
+                      <div className='w-full px-4 py-9'>
+                        <div className='mx-auto w-full max-w-md'>
+                          <RadioGroup onChange={(e) => HanddleChange(e)}>
+                            <RadioGroup.Label className='sr-only'>
+                              Server size
+                            </RadioGroup.Label>
+                            <div className='space-y-5'>
+                              {InstagramDescrip.map((insta) => (
+                                <RadioGroup.Option
+                                  key={insta.name}
+                                  value={insta}
+                                  className={({ active, checked }) =>
+                                    `${
+                                      active
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-orange-200'
+                                        : ''
+                                    }
+                                    ${
+                                      checked
+                                        ? 'bg-gradient-to-br to-orange-300 from-pink-300 bg-opacity-75 text-black'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                  }
+                                >
+                                  {({ checked }) => (
+                                    <>
+                                      <div className='flex w-full items-center justify-between'>
+                                        <div className='flex items-center'>
+                                          <div className='text-sm'>
+                                            <RadioGroup.Label
+                                              as='p'
+                                              className={`font-medium  ${
+                                                checked
+                                                  ? 'text-gray-900'
+                                                  : 'text-gray-800'
+                                              }`}
+                                            >
+                                              {insta.name}
+                                            </RadioGroup.Label>
+                                            <RadioGroup.Description
+                                              as='span'
+                                              className={`inline ${
+                                                checked
+                                                  ? 'text-gray-800 text-md'
+                                                  : 'text-gray-600'
+                                              }`}
+                                            >
+                                              <span>{insta.ram}</span>{' '}
+                                              <span aria-hidden='true'>
+                                                &middot;
+                                              </span>{' '}
+                                              <span>{insta.disk}</span>
+                                            </RadioGroup.Description>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </div>
                       </div>
-                    </button>
-                    <p className='font-sans text-xs font-light'>
-                      {red.descripcion}
-                    </p>
-                  </div>
-                ))}
-              </ul>
+                    </Tab.Panel>
+                    <Tab.Panel className='rounded-xl bg-sky-50'>
+                      <div className='w-full px-4 py-9'>
+                        <div className='mx-auto w-full max-w-md'>
+                          <RadioGroup onChange={(e) => HanddleChange(e)}>
+                            <RadioGroup.Label className='sr-only'>
+                              Server size
+                            </RadioGroup.Label>
+                            <div className='space-y-5'>
+                              {TwitterDescrip.map((insta) => (
+                                <RadioGroup.Option
+                                  key={insta.name}
+                                  value={insta}
+                                  className={({ active, checked }) =>
+                                    `${
+                                      active
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-purple-900'
+                                        : ''
+                                    }
+                                    ${
+                                      checked
+                                        ? 'bg-purple-400 bg-opacity-75 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                  }
+                                >
+                                  {({ checked }) => (
+                                    <>
+                                      <div className='flex w-full items-center justify-between'>
+                                        <div className='flex items-center'>
+                                          <div className='text-sm'>
+                                            <RadioGroup.Label
+                                              as='p'
+                                              className={`font-medium  ${
+                                                checked
+                                                  ? 'text-white'
+                                                  : 'text-gray-900'
+                                              }`}
+                                            >
+                                              {insta.name}
+                                            </RadioGroup.Label>
+                                            <RadioGroup.Description
+                                              as='span'
+                                              className={`inline ${
+                                                checked
+                                                  ? 'text-sky-100'
+                                                  : 'text-gray-500'
+                                              }`}
+                                            >
+                                              <span>{insta.ram}</span>{' '}
+                                              <span aria-hidden='true'>
+                                                &middot;
+                                              </span>{' '}
+                                              <span>{insta.disk}</span>
+                                            </RadioGroup.Description>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </div>
+                      </div>
+                    </Tab.Panel>
+                    <Tab.Panel className='rounded-xl bg-red-100'>
+                      <div className='w-full px-4 py-9'>
+                        <div className='mx-auto w-full max-w-md'>
+                          <RadioGroup onChange={(e) => HanddleChange(e)}>
+                            <RadioGroup.Label className='sr-only'>
+                              Server size
+                            </RadioGroup.Label>
+                            <div className='space-y-5'>
+                              {YoutubeDescrip.map((insta) => (
+                                <RadioGroup.Option
+                                  key={insta.name}
+                                  value={insta}
+                                  className={({ active, checked }) =>
+                                    `${
+                                      active
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-purple-900'
+                                        : ''
+                                    }
+                                    ${
+                                      checked
+                                        ? 'bg-purple-400 bg-opacity-75 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                  }
+                                >
+                                  {({ checked }) => (
+                                    <>
+                                      <div className='flex w-full items-center justify-between'>
+                                        <div className='flex items-center'>
+                                          <div className='text-sm'>
+                                            <RadioGroup.Label
+                                              as='p'
+                                              className={`font-medium  ${
+                                                checked
+                                                  ? 'text-white'
+                                                  : 'text-gray-900'
+                                              }`}
+                                            >
+                                              {insta.name}
+                                            </RadioGroup.Label>
+                                            <RadioGroup.Description
+                                              as='span'
+                                              className={`inline ${
+                                                checked
+                                                  ? 'text-sky-100'
+                                                  : 'text-gray-500'
+                                              }`}
+                                            >
+                                              <span>{insta.ram}</span>{' '}
+                                              <span aria-hidden='true'>
+                                                &middot;
+                                              </span>{' '}
+                                              <span>{insta.disk}</span>
+                                            </RadioGroup.Description>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </div>
+                      </div>
+                    </Tab.Panel>
+                    <Tab.Panel className='rounded-xl bg-blue-100'>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Voluptas iste possimus, quos quasi, magni eveniet optio
+                    </Tab.Panel>
+                  </Tab.Panels>
+                </Tab.Group>
+              </div>
             </div>
           </section>
         </main>
-        <a href={image} download='asda.jpg'>
-          descargar
-        </a>
       </div>
     </div>
   )

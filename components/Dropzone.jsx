@@ -12,6 +12,7 @@ import {
 
 import { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import upload from './upload'
 
 const Dropzone = ({ className }) => {
   const { setSuccess, setImageOriginal, setImg, success, setImgObject } =
@@ -65,11 +66,12 @@ const Dropzone = ({ className }) => {
     files.forEach((file) => formData.append('file', file))
     formData.append('upload_preset', 'ml_dertsxgt')
     formData.append('timestamp', Date.now() / 1000)
-    formData.append('api_key', 253679461765826)
+    formData.append('api_key', process.env.NEXT_PUBLIC_ApiKey)
 
-    // const res = await upload({ formData })
+    const res = await upload({ formData })
 
-    // setImg(res.viejaImg)
+    setImgObject(res)
+    setImg(res.secure_url)
 
     setSuccess('Exito')
   }
