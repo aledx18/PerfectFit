@@ -25,12 +25,34 @@ export const imagenExample = [
   }
 ]
 
-export const size = {
+export const sizeInsta = {
   History: { w: 1080, h: 1920 },
   Perfil: { w: 180, h: 180 },
   Post: { w: 2080, h: 2080 },
   'Fotos horizontales': { w: 1080, h: 566 },
   'Fotos verticales': { w: 1080, h: 1350 }
+}
+
+export const sizeTwitter = {
+  Banner: { w: 1024, h: 280 },
+  Perfil: { w: 400, h: 400 },
+  Tweet: { w: 1024, h: 512 },
+  'Tweet link': { w: 440, h: 220 },
+  'Twitter Cards': { w: 800, h: 320 }
+}
+export const sizeYoutube = {
+  Portada: { w: 2560, h: 1440 },
+  Perfil: { w: 800, h: 800 },
+  Miniatura: { w: 1280, h: 720 },
+  asdadas: { w: 440, h: 220 },
+  'Twitter Cards': { w: 800, h: 320 }
+}
+export const sizeLinkedin = {
+  Portada: { w: 1584, h: 396 },
+  Perfil: { w: 400, h: 400 },
+  Post: { w: 520, h: 320 },
+  Logotipo: { w: 300, h: 300 },
+  'Twitter Cards': { w: 800, h: 320 }
 }
 
 export const InstagramDescrip = [
@@ -108,8 +130,35 @@ export const YoutubeDescrip = [
     disk: 'Miniatura del video'
   },
   {
-    name: '  asdadas  ',
+    name: 'asdadas',
     ram: '(440 x 220px)',
+    disk: '.......'
+  },
+  {
+    name: 'Twitter Cards',
+    ram: '(800 x 320px)',
+    disk: '---'
+  }
+]
+export const LinkedinDescrip = [
+  {
+    name: 'Portada',
+    ram: '(1584 x 396px)',
+    disk: 'maximo 6MB'
+  },
+  {
+    name: 'Perfil',
+    ram: '(400 x 400px)',
+    disk: '--'
+  },
+  {
+    name: 'Post',
+    ram: '(520 x 320px)',
+    disk: 'Miniatura del video'
+  },
+  {
+    name: 'Logotipo',
+    ram: '(300 x 300px)',
     disk: '.......'
   },
   {

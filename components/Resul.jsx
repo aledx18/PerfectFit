@@ -1,34 +1,41 @@
 /* eslint-disable react/jsx-curly-newline */
 import Image from 'next/image'
+import changeImage from './changeImage'
 import useFileStore from '../components/StoreZustand/Store'
+import { Fragment, useState } from 'react'
+import { Dialog, Transition, Tab, RadioGroup } from '@headlessui/react'
 import {
   InstagramDescrip,
   TwitterDescrip,
-  YoutubeDescrip
+  YoutubeDescrip,
+  LinkedinDescrip
 } from '../components/const/constantes'
-import { Fragment, useState } from 'react'
-import { Dialog, Transition, Tab, RadioGroup } from '@headlessui/react'
-
 import {
-  IconImg,
+  IconBack,
   IconInsta,
   IconYoutube,
   IconLinked,
   IconTwitter,
-  IconDownload
+  IconDownload,
+  IconInstaM,
+  IconX,
+  IconMenu
 } from './../components/Icons/icons'
-import changeImage from './changeImage'
 
 export default function Resul() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [loading, setLoading] = useState(true)
+
+  const [imageLoaded, setImageLoaded] = useState(false)
   const [tab, setTab] = useState(0)
 
   const { imageOriginal, image, setImg, imgObject } = useFileStore()
 
   function HanddleChange(event) {
+    setImageLoaded(true)
+
     const publicId = imgObject.public_id
     const ImageModif = changeImage(event.name, publicId, tab)
+
     setImg(ImageModif)
   }
 
@@ -38,7 +45,7 @@ export default function Resul() {
   }
 
   const myLoader = () => {
-    setLoading(false)
+    setImageLoaded(true)
   }
 
   return (
@@ -83,8 +90,311 @@ export default function Resul() {
                       className='-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400'
                       onClick={() => setMobileFiltersOpen(false)}
                     >
-                      <span className='sr-only'>Close menu</span>
+                      <IconX />
+                      <span className='text-black sr-only'>Close menu</span>
                     </button>
+                  </div>
+
+                  <div className='w-full max-w-md px-2 sm:px-0 rounded-xl'>
+                    <button
+                      onClick={revertImage}
+                      className='cursor-pointer border relative inline-flex items-center justify-center my-2 mx-10 overflow-hidden text-sm font-medium text-gray-900 rounded-lg border-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 focus:ring-4 focus:outline-none focus:ring-purple-200 '
+                    >
+                      <IconBack />
+                    </button>
+                    <a
+                      href={image}
+                      download='asda.jpg'
+                      className='cursor-pointer border relative inline-flex items-center justify-center my-2 mx-10 overflow-hidden text-sm font-medium text-gray-900 rounded-lg border-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 focus:ring-4 focus:outline-none focus:ring-purple-200 '
+                    >
+                      <IconDownload />
+                    </a>
+                    <Tab.Group onChange={setTab}>
+                      <Tab.List className='flex justify-between rounded-sm m-0'>
+                        <Tab className='p-2 m-0 hover:bg-orange-50 focus:border-b-2 focus:bg-orange-50 border-orange-200 outline-none'>
+                          <IconInstaM />
+                        </Tab>
+                        <Tab className='p-2 m-0 hover:bg-sky-50 focus:border-b-2 focus:bg-sky-50 border-sky-200 outline-none'>
+                          <IconTwitter />
+                        </Tab>
+                        <Tab className='p-2 m-0 hover:bg-red-50 focus:border-b-2 focus:bg-red-50 border-red-200 outline-none'>
+                          <IconYoutube />
+                        </Tab>
+                        <Tab className='p-2 m-0 hover:bg-blue-100 focus:border-b-2 focus:bg-blue-100 border-blue-400 outline-none'>
+                          <IconLinked />
+                        </Tab>
+                      </Tab.List>
+                      <Tab.Panels className='mt-2'>
+                        <Tab.Panel className='rounded-xl bg-orange-100'>
+                          <div className='w-full px-4 py-9'>
+                            <div className='mx-auto w-full max-w-md'>
+                              <RadioGroup onChange={(e) => HanddleChange(e)}>
+                                <RadioGroup.Label className='sr-only'>
+                                  Server size
+                                </RadioGroup.Label>
+                                <div className='space-y-5'>
+                                  {InstagramDescrip.map((insta) => (
+                                    <RadioGroup.Option
+                                      key={insta.name}
+                                      value={insta}
+                                      className={({ active, checked }) =>
+                                        `${
+                                          active
+                                            ? 'ring-2 ring-opacity-60 ring-offset-2 ring-orange-200'
+                                            : ''
+                                        }
+                                    ${
+                                      checked
+                                        ? 'bg-gradient-to-br to-orange-300 from-pink-300 bg-opacity-75 text-black'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                      }
+                                    >
+                                      {({ checked }) => (
+                                        <>
+                                          <div className='flex w-full items-center justify-between'>
+                                            <div className='flex items-center'>
+                                              <div className='text-sm'>
+                                                <RadioGroup.Label
+                                                  as='p'
+                                                  className={`font-medium  ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-800'
+                                                  }`}
+                                                >
+                                                  {insta.name}
+                                                </RadioGroup.Label>
+                                                <RadioGroup.Description
+                                                  as='span'
+                                                  className={`inline ${
+                                                    checked
+                                                      ? 'text-gray-800 text-md'
+                                                      : 'text-gray-600'
+                                                  }`}
+                                                >
+                                                  <span>{insta.ram}</span>{' '}
+                                                  <span aria-hidden='true'>
+                                                    &middot;
+                                                  </span>{' '}
+                                                  <span>{insta.disk}</span>
+                                                </RadioGroup.Description>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </RadioGroup.Option>
+                                  ))}
+                                </div>
+                              </RadioGroup>
+                            </div>
+                          </div>
+                        </Tab.Panel>
+                        <Tab.Panel className='rounded-xl bg-sky-50'>
+                          <div className='w-full px-4 py-9'>
+                            <div className='mx-auto w-full max-w-md'>
+                              <RadioGroup onChange={(e) => HanddleChange(e)}>
+                                <RadioGroup.Label className='sr-only'>
+                                  Server size
+                                </RadioGroup.Label>
+                                <div className='space-y-5'>
+                                  {TwitterDescrip.map((insta) => (
+                                    <RadioGroup.Option
+                                      key={insta.name}
+                                      value={insta}
+                                      className={({ active, checked }) =>
+                                        `${
+                                          active
+                                            ? 'ring-2 ring-opacity-60 ring-offset-2 ring-sky-400'
+                                            : ''
+                                        }
+                                    ${
+                                      checked
+                                        ? 'bg-sky-300 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                      }
+                                    >
+                                      {({ checked }) => (
+                                        <>
+                                          <div className='flex w-full items-center justify-between'>
+                                            <div className='flex items-center'>
+                                              <div className='text-sm'>
+                                                <RadioGroup.Label
+                                                  as='p'
+                                                  className={`font-medium  ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-800'
+                                                  }`}
+                                                >
+                                                  {insta.name}
+                                                </RadioGroup.Label>
+                                                <RadioGroup.Description
+                                                  as='span'
+                                                  className={`inline ${
+                                                    checked
+                                                      ? 'text-gray-600'
+                                                      : 'text-gray-500'
+                                                  }`}
+                                                >
+                                                  <span>{insta.ram}</span>{' '}
+                                                  <span aria-hidden='true'>
+                                                    &middot;
+                                                  </span>{' '}
+                                                  <span>{insta.disk}</span>
+                                                </RadioGroup.Description>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </RadioGroup.Option>
+                                  ))}
+                                </div>
+                              </RadioGroup>
+                            </div>
+                          </div>
+                        </Tab.Panel>
+                        <Tab.Panel className='rounded-xl bg-red-100 bg-opacity-75'>
+                          <div className='w-full px-4 py-9'>
+                            <div className='mx-auto w-full max-w-md'>
+                              <RadioGroup onChange={(e) => HanddleChange(e)}>
+                                <RadioGroup.Label className='sr-only'>
+                                  Server size
+                                </RadioGroup.Label>
+                                <div className='space-y-5'>
+                                  {YoutubeDescrip.map((insta) => (
+                                    <RadioGroup.Option
+                                      key={insta.name}
+                                      value={insta}
+                                      className={({ active, checked }) =>
+                                        `${
+                                          active
+                                            ? 'ring-2 ring-opacity-60 ring-offset-2 ring-red-400'
+                                            : ''
+                                        }
+                                    ${
+                                      checked
+                                        ? 'bg-red-300 bg-opacity-70 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                      }
+                                    >
+                                      {({ checked }) => (
+                                        <>
+                                          <div className='flex w-full items-center justify-between'>
+                                            <div className='flex items-center'>
+                                              <div className='text-sm'>
+                                                <RadioGroup.Label
+                                                  as='p'
+                                                  className={`font-medium  ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-800'
+                                                  }`}
+                                                >
+                                                  {insta.name}
+                                                </RadioGroup.Label>
+                                                <RadioGroup.Description
+                                                  as='span'
+                                                  className={`inline ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-500'
+                                                  }`}
+                                                >
+                                                  <span>{insta.ram}</span>{' '}
+                                                  <span aria-hidden='true'>
+                                                    &middot;
+                                                  </span>{' '}
+                                                  <span>{insta.disk}</span>
+                                                </RadioGroup.Description>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </RadioGroup.Option>
+                                  ))}
+                                </div>
+                              </RadioGroup>
+                            </div>
+                          </div>
+                        </Tab.Panel>
+                        <Tab.Panel className='rounded-xl bg-blue-100 bg-opacity-50'>
+                          <div className='w-full px-4 py-9'>
+                            <div className='mx-auto w-full max-w-md'>
+                              <RadioGroup onChange={(e) => HanddleChange(e)}>
+                                <RadioGroup.Label className='sr-only'>
+                                  Server size
+                                </RadioGroup.Label>
+                                <div className='space-y-5'>
+                                  {LinkedinDescrip.map((insta) => (
+                                    <RadioGroup.Option
+                                      key={insta.name}
+                                      value={insta}
+                                      className={({ active, checked }) =>
+                                        `${
+                                          active
+                                            ? 'ring-2 ring-opacity-60 ring-offset-2 ring-blue-600'
+                                            : ''
+                                        }
+                                    ${
+                                      checked
+                                        ? 'bg-blue-300 bg-opacity-70 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                      }
+                                    >
+                                      {({ checked }) => (
+                                        <>
+                                          <div className='flex w-full items-center justify-between'>
+                                            <div className='flex items-center'>
+                                              <div className='text-sm'>
+                                                <RadioGroup.Label
+                                                  as='p'
+                                                  className={`font-medium  ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-800'
+                                                  }`}
+                                                >
+                                                  {insta.name}
+                                                </RadioGroup.Label>
+                                                <RadioGroup.Description
+                                                  as='span'
+                                                  className={`inline ${
+                                                    checked
+                                                      ? 'text-gray-900'
+                                                      : 'text-gray-500'
+                                                  }`}
+                                                >
+                                                  <span>{insta.ram}</span>{' '}
+                                                  <span aria-hidden='true'>
+                                                    &middot;
+                                                  </span>{' '}
+                                                  <span>{insta.disk}</span>
+                                                </RadioGroup.Description>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </>
+                                      )}
+                                    </RadioGroup.Option>
+                                  ))}
+                                </div>
+                              </RadioGroup>
+                            </div>
+                          </div>
+                        </Tab.Panel>
+                      </Tab.Panels>
+                    </Tab.Group>
                   </div>
 
                   {/* Filters */}
@@ -96,10 +406,10 @@ export default function Resul() {
         {/* Mobile filter dialog */}
         <main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-screen'>
           <div className='flex items-baseline justify-between border-b border-gray-200 pt-6'>
-            <h1 className='text-4xl font-bold tracking-tight text-gray-900 text-center'>
+            <h1 className='md:text-4xl text-2xl font-bold tracking-tight text-gray-900 text-center'>
               Crop and Resize
             </h1>
-            <div className='flex items-center'>
+            <div className='items-center hidden md:flex'>
               <button
                 onClick={revertImage}
                 className='cursor-pointer relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 '
@@ -115,22 +425,22 @@ export default function Resul() {
               >
                 <IconDownload />
               </a>
-              <button
-                type='button'
-                className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
-                onClick={() => setMobileFiltersOpen(true)}
-              >
-                <span className='sr-only'>Filters</span>
-                <IconImg className='h-5 w-5' aria-hidden='true' />
-              </button>
             </div>
+            <button
+              type='button'
+              className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
+              onClick={() => setMobileFiltersOpen(true)}
+            >
+              <span className='sr-only'>Filters</span>
+              <IconMenu className='h-5 w-5' aria-hidden='true' />
+            </button>
           </div>
 
           <section aria-labelledby='products-heading' className='pt-6 pb-5 '>
             <div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
               <div className='lg:col-span-3'>
-                <div className='flex text-center relative m-auto justify-center p-auto rounded-lg border-4 border-dashed border-purple-500/75 lg:h-full'>
-                  {loading && (
+                <div className='flex text-center relative m-auto justify-center p-auto rounded-lg border-4 border-dashed border-purple-500/75 lg:h-full bg-slate-50'>
+                  {!imageLoaded && (
                     <div
                       role='status'
                       className='space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center'
@@ -148,29 +458,31 @@ export default function Resul() {
                       </div>
                     </div>
                   )}
+
                   <Image
                     src={image}
-                    fill
-                    onLoadingComplete={myLoader}
+                    width={400}
+                    height={900}
+                    onLoad={myLoader}
                     alt='img'
-                    className='rounded-xl p-2 m-auto'
+                    className='rounded-xl p-1 m-auto'
                   />
                 </div>
               </div>
 
-              <div className='w-full max-w-md px-2 sm:px-0 rounded-xl'>
+              <div className='w-full max-w-md px-2 sm:px-0 rounded-xl hidden md:block'>
                 <Tab.Group onChange={setTab}>
                   <Tab.List className='flex justify-between rounded-sm m-0'>
-                    <Tab className='p-2 m-0 hover:bg-orange-50 focus:border-b-2 border-orange-200 outline-none'>
+                    <Tab className='p-2 m-0 hover:bg-orange-50 focus:border-b-2 focus:bg-orange-50 border-orange-200 outline-none'>
                       <IconInsta />
                     </Tab>
-                    <Tab className='p-2 m-0 hover:bg-sky-50 focus:border-b-2 border-sky-200 outline-none'>
+                    <Tab className='p-2 m-0 hover:bg-sky-50 focus:border-b-2 focus:bg-sky-50 border-sky-200 outline-none'>
                       <IconTwitter />
                     </Tab>
-                    <Tab className='p-2 m-0 hover:bg-red-50 focus:border-b-2 border-red-200 outline-none'>
+                    <Tab className='p-2 m-0 hover:bg-red-50 focus:border-b-2 focus:bg-red-50 border-red-200 outline-none'>
                       <IconYoutube />
                     </Tab>
-                    <Tab className='p-2 m-0 hover:bg-blue-100 focus:border-b-2 border-blue-400 outline-none'>
+                    <Tab className='p-2 m-0 hover:bg-blue-100 focus:border-b-2 focus:bg-blue-100 border-blue-400 outline-none'>
                       <IconLinked />
                     </Tab>
                   </Tab.List>
@@ -257,12 +569,12 @@ export default function Resul() {
                                   className={({ active, checked }) =>
                                     `${
                                       active
-                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-purple-900'
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-sky-400'
                                         : ''
                                     }
                                     ${
                                       checked
-                                        ? 'bg-purple-400 bg-opacity-75 text-white'
+                                        ? 'bg-sky-300 text-white'
                                         : 'bg-white'
                                     }
                                         relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
@@ -277,8 +589,8 @@ export default function Resul() {
                                               as='p'
                                               className={`font-medium  ${
                                                 checked
-                                                  ? 'text-white'
-                                                  : 'text-gray-900'
+                                                  ? 'text-gray-900'
+                                                  : 'text-gray-800'
                                               }`}
                                             >
                                               {insta.name}
@@ -287,7 +599,7 @@ export default function Resul() {
                                               as='span'
                                               className={`inline ${
                                                 checked
-                                                  ? 'text-sky-100'
+                                                  ? 'text-gray-600'
                                                   : 'text-gray-500'
                                               }`}
                                             >
@@ -309,7 +621,7 @@ export default function Resul() {
                         </div>
                       </div>
                     </Tab.Panel>
-                    <Tab.Panel className='rounded-xl bg-red-100'>
+                    <Tab.Panel className='rounded-xl bg-red-100 bg-opacity-75'>
                       <div className='w-full px-4 py-9'>
                         <div className='mx-auto w-full max-w-md'>
                           <RadioGroup onChange={(e) => HanddleChange(e)}>
@@ -324,12 +636,12 @@ export default function Resul() {
                                   className={({ active, checked }) =>
                                     `${
                                       active
-                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-purple-900'
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-red-400'
                                         : ''
                                     }
                                     ${
                                       checked
-                                        ? 'bg-purple-400 bg-opacity-75 text-white'
+                                        ? 'bg-red-300 bg-opacity-70 text-white'
                                         : 'bg-white'
                                     }
                                         relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
@@ -344,8 +656,8 @@ export default function Resul() {
                                               as='p'
                                               className={`font-medium  ${
                                                 checked
-                                                  ? 'text-white'
-                                                  : 'text-gray-900'
+                                                  ? 'text-gray-900'
+                                                  : 'text-gray-800'
                                               }`}
                                             >
                                               {insta.name}
@@ -354,7 +666,7 @@ export default function Resul() {
                                               as='span'
                                               className={`inline ${
                                                 checked
-                                                  ? 'text-sky-100'
+                                                  ? 'text-gray-900'
                                                   : 'text-gray-500'
                                               }`}
                                             >
@@ -376,9 +688,72 @@ export default function Resul() {
                         </div>
                       </div>
                     </Tab.Panel>
-                    <Tab.Panel className='rounded-xl bg-blue-100'>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptas iste possimus, quos quasi, magni eveniet optio
+                    <Tab.Panel className='rounded-xl bg-blue-100 bg-opacity-50'>
+                      <div className='w-full px-4 py-9'>
+                        <div className='mx-auto w-full max-w-md'>
+                          <RadioGroup onChange={(e) => HanddleChange(e)}>
+                            <RadioGroup.Label className='sr-only'>
+                              Server size
+                            </RadioGroup.Label>
+                            <div className='space-y-5'>
+                              {LinkedinDescrip.map((insta) => (
+                                <RadioGroup.Option
+                                  key={insta.name}
+                                  value={insta}
+                                  className={({ active, checked }) =>
+                                    `${
+                                      active
+                                        ? 'ring-2 ring-opacity-60 ring-offset-2 ring-blue-600'
+                                        : ''
+                                    }
+                                    ${
+                                      checked
+                                        ? 'bg-blue-300 bg-opacity-70 text-white'
+                                        : 'bg-white'
+                                    }
+                                        relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+                                  }
+                                >
+                                  {({ checked }) => (
+                                    <>
+                                      <div className='flex w-full items-center justify-between'>
+                                        <div className='flex items-center'>
+                                          <div className='text-sm'>
+                                            <RadioGroup.Label
+                                              as='p'
+                                              className={`font-medium  ${
+                                                checked
+                                                  ? 'text-gray-900'
+                                                  : 'text-gray-800'
+                                              }`}
+                                            >
+                                              {insta.name}
+                                            </RadioGroup.Label>
+                                            <RadioGroup.Description
+                                              as='span'
+                                              className={`inline ${
+                                                checked
+                                                  ? 'text-gray-900'
+                                                  : 'text-gray-500'
+                                              }`}
+                                            >
+                                              <span>{insta.ram}</span>{' '}
+                                              <span aria-hidden='true'>
+                                                &middot;
+                                              </span>{' '}
+                                              <span>{insta.disk}</span>
+                                            </RadioGroup.Description>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </>
+                                  )}
+                                </RadioGroup.Option>
+                              ))}
+                            </div>
+                          </RadioGroup>
+                        </div>
+                      </div>
                     </Tab.Panel>
                   </Tab.Panels>
                 </Tab.Group>

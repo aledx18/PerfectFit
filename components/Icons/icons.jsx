@@ -64,11 +64,33 @@ export function IconImg() {
   )
 }
 
+export function IconMenu() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='35'
+      height='30'
+      fill='none'
+      stroke='#2c3e50'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeWidth='1.5'
+      className='icon icon-tabler icon-tabler-menu-2'
+      viewBox='0 0 24 24'
+    >
+      <path stroke='none' d='M0 0h24v24H0z' />
+      <path d='M4 6L20 6' />
+      <path d='M4 12L20 12' />
+      <path d='M4 18L20 18' />
+    </svg>
+  )
+}
+
 export function IconX() {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='20'
+      width='30'
       height='20'
       fill='none'
       stroke='#2c3e50'
@@ -159,6 +181,94 @@ export function IconInsta() {
         d='M38.477 51.217a12.631 12.631 0 1112.629 12.632 12.631 12.631 0 01-12.629-12.632m-6.829 0a19.458 19.458 0 1019.458-19.458 19.457 19.457 0 00-19.458 19.458m35.139-20.229a4.547 4.547 0 104.549-4.545 4.549 4.549 0 00-4.547 4.545m-30.99 51.074a20.943 20.943 0 01-7.037-1.3 12.547 12.547 0 01-7.193-7.19 20.923 20.923 0 01-1.3-7.037c-.184-3.994-.22-5.194-.22-15.313s.04-11.316.22-15.314a21.082 21.082 0 011.3-7.037 12.54 12.54 0 017.193-7.193 20.924 20.924 0 017.037-1.3c3.994-.184 5.194-.22 15.309-.22s11.316.039 15.314.221a21.082 21.082 0 017.037 1.3 12.541 12.541 0 017.193 7.193 20.926 20.926 0 011.3 7.037c.184 4 .22 5.194.22 15.314s-.037 11.316-.22 15.314a21.023 21.023 0 01-1.3 7.037 12.547 12.547 0 01-7.193 7.19 20.925 20.925 0 01-7.037 1.3c-3.994.184-5.194.22-15.314.22s-11.316-.037-15.309-.22m-.314-68.509a27.786 27.786 0 00-9.2 1.76 19.373 19.373 0 00-11.083 11.083 27.794 27.794 0 00-1.76 9.2c-.187 4.04-.229 5.332-.229 15.623s.043 11.582.229 15.623a27.793 27.793 0 001.76 9.2 19.374 19.374 0 0011.083 11.083 27.813 27.813 0 009.2 1.76c4.042.184 5.332.229 15.623.229s11.582-.043 15.623-.229a27.8 27.8 0 009.2-1.76 19.374 19.374 0 0011.083-11.083 27.716 27.716 0 001.76-9.2c.184-4.043.226-5.332.226-15.623s-.043-11.582-.226-15.623a27.786 27.786 0 00-1.76-9.2 19.379 19.379 0 00-11.08-11.083 27.748 27.748 0 00-9.2-1.76c-4.041-.185-5.332-.229-15.621-.229s-11.583.043-15.626.229'
         data-name='Path 18'
       />
+    </svg>
+  )
+}
+export function IconInstaM() {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      width='50'
+      height='35'
+      fill='none'
+      viewBox='0 0 32 32'
+    >
+      <rect
+        width='28'
+        height='28'
+        x='2'
+        y='2'
+        fill='url(#paint0_radial_87_7153)'
+        rx='6'
+      />
+      <rect
+        width='28'
+        height='28'
+        x='2'
+        y='2'
+        fill='url(#paint1_radial_87_7153)'
+        rx='6'
+      />
+      <rect
+        width='28'
+        height='28'
+        x='2'
+        y='2'
+        fill='url(#paint2_radial_87_7153)'
+        rx='6'
+      />
+      <path fill='#fff' d='M23 10.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z' />
+      <path
+        fill='#fff'
+        fillRule='evenodd'
+        d='M16 21a5 5 0 100-10 5 5 0 000 10zm0-2a3 3 0 100-6 3 3 0 000 6z'
+        clipRule='evenodd'
+      />
+      <path
+        fill='#fff'
+        fillRule='evenodd'
+        d='M6 15.6c0-3.36 0-5.04.654-6.324a6 6 0 012.622-2.622C10.56 6 12.24 6 15.6 6h.8c3.36 0 5.04 0 6.324.654a6 6 0 012.622 2.622C26 10.56 26 12.24 26 15.6v.8c0 3.36 0 5.04-.654 6.324a6 6 0 01-2.622 2.622C21.44 26 19.76 26 16.4 26h-.8c-3.36 0-5.04 0-6.324-.654a6 6 0 01-2.622-2.622C6 21.44 6 19.76 6 16.4v-.8zM15.6 8h.8c1.713 0 2.878.002 3.778.075.877.072 1.325.202 1.638.361a4 4 0 011.748 1.748c.16.313.29.761.36 1.638.074.9.076 2.065.076 3.778v.8c0 1.713-.002 2.878-.075 3.778-.072.877-.202 1.325-.361 1.638a4 4 0 01-1.748 1.748c-.313.16-.761.29-1.638.36-.9.074-2.065.076-3.778.076h-.8c-1.713 0-2.878-.002-3.778-.075-.877-.072-1.325-.202-1.638-.361a4 4 0 01-1.748-1.748c-.16-.313-.29-.761-.36-1.638C8.001 19.278 8 18.113 8 16.4v-.8c0-1.713.002-2.878.075-3.778.072-.877.202-1.325.361-1.638a4 4 0 011.748-1.748c.313-.16.761-.29 1.638-.36.9-.074 2.065-.076 3.778-.076z'
+        clipRule='evenodd'
+      />
+      <defs>
+        <radialGradient
+          id='paint0_radial_87_7153'
+          cx='0'
+          cy='0'
+          r='1'
+          gradientTransform='rotate(-55.376 27.916 .066) scale(25.5196)'
+          gradientUnits='userSpaceOnUse'
+        >
+          <stop stopColor='#B13589' />
+          <stop offset='0.793' stopColor='#C62F94' />
+          <stop offset='1' stopColor='#8A3AC8' />
+        </radialGradient>
+        <radialGradient
+          id='paint1_radial_87_7153'
+          cx='0'
+          cy='0'
+          r='1'
+          gradientTransform='rotate(-65.136 29.766 6.89) scale(22.5942)'
+          gradientUnits='userSpaceOnUse'
+        >
+          <stop stopColor='#E0E8B7' />
+          <stop offset='0.445' stopColor='#FB8A2E' />
+          <stop offset='0.715' stopColor='#E2425C' />
+          <stop offset='1' stopColor='#E2425C' stopOpacity='0' />
+        </radialGradient>
+        <radialGradient
+          id='paint2_radial_87_7153'
+          cx='0'
+          cy='0'
+          r='1'
+          gradientTransform='matrix(38.50003 -5.5 1.1764 8.23476 .5 3)'
+          gradientUnits='userSpaceOnUse'
+        >
+          <stop offset='0.157' stopColor='#406ADC' />
+          <stop offset='0.468' stopColor='#6A45BE' />
+          <stop offset='1' stopColor='#6A45BE' stopOpacity='0' />
+        </radialGradient>
+      </defs>
     </svg>
   )
 }
@@ -281,6 +391,30 @@ export function IconDownload() {
           <path d='M12 4L12 16' />
         </svg>
         Download HD
+      </span>
+    </>
+  )
+}
+export function IconBack() {
+  return (
+    <>
+      <span className='flex px-6 py-2.5 transition-all ease-in duration-75 bg-white rounded-md group-hover:bg-opacity-0'>
+        <svg
+          xmlns='http://www.w3.org/2000/svg'
+          width='20'
+          height='20'
+          fill='none'
+          stroke='#2c3e50'
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth='1.5'
+          className='icon icon-tabler icon-tabler-arrow-back  w-4 h-4 mr-3'
+          viewBox='0 0 24 24'
+        >
+          <path stroke='none' d='M0 0h24v24H0z' />
+          <path d='M9 11l-4 4 4 4m-4-4h11a4 4 0 000-8h-1' />
+        </svg>
+        Reset Image
       </span>
     </>
   )

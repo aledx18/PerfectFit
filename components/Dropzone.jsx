@@ -1,7 +1,8 @@
 /* eslint-disable import/no-duplicates */
+import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
-
 import { imagenExample } from './const/constantes'
+import upload from './upload'
 import useFileStore from './StoreZustand/Store'
 import {
   IconImg,
@@ -9,16 +10,13 @@ import {
   IconX,
   IconButton
 } from '../components/Icons/icons'
-
-import { useCallback, useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import upload from './upload'
 
 const Dropzone = ({ className }) => {
-  const { setSuccess, setImageOriginal, setImg, success, setImgObject } =
-    useFileStore()
   const [files, setFiles] = useState([])
   const [rejected, setRejected] = useState([])
+  const { setSuccess, setImageOriginal, setImg, success, setImgObject } =
+    useFileStore()
 
   const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
     if (acceptedFiles?.length) {
@@ -45,11 +43,10 @@ const Dropzone = ({ className }) => {
     return () => files.forEach((file) => URL.revokeObjectURL(file.preview))
   }, [files])
 
-  const removeFile = (name) => {
+  function removeFile(name) {
     setFiles((files) => files.filter((file) => file.name !== name))
   }
-
-  const removeRejected = (name) => {
+  function removeRejected(name) {
     setRejected((files) => files.filter(({ file }) => file.name !== name))
   }
   function imagenPrev(img) {
@@ -69,10 +66,9 @@ const Dropzone = ({ className }) => {
     formData.append('api_key', process.env.NEXT_PUBLIC_ApiKey)
 
     const res = await upload({ formData })
-
+    setImageOriginal(res.secure_url)
     setImgObject(res)
     setImg(res.secure_url)
-
     setSuccess('Exito')
   }
 
@@ -85,7 +81,6 @@ const Dropzone = ({ className }) => {
           })}
         >
           <input {...getInputProps()} />
-
           <div className='flex flex-col items-center justify-center p-11'>
             {isDragActive ? (
               <>
@@ -213,7 +208,7 @@ const Dropzone = ({ className }) => {
             onClick={() => {
               imagenPrev(img)
             }}
-            className='rounded-sm shadow-md filter grayscale hover:grayscale-0 w-auto h-auto cursor-pointer hover:scale-105'
+            className='rounded-md shadow-md filter grayscale hover:grayscale-0 w-auto h-auto cursor-pointer hover:rounded-md hover:scale-105'
           />
         ))}
       </div>
