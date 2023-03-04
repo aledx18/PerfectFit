@@ -24,7 +24,6 @@ import {
 
 export default function Resul() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-
   const [imageLoaded, setImageLoaded] = useState(false)
   const [tab, setTab] = useState(0)
 

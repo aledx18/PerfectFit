@@ -29,7 +29,7 @@ export default function Homepage() {
                   <Dropzone className='lg:py-auto lg:px-auto border-2 border-purple-500 border-dashed rounded-xl shadow-xl' />
                 </div>
               </section>
-              <IconCloudinary />
+              Made whit <IconCloudinary /> by AlejandroD.
             </div>
           </>
         )}
