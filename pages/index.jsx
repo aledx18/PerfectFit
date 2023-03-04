@@ -29,7 +29,9 @@ export default function Homepage() {
                   <Dropzone className='lg:py-auto lg:px-auto border-2 border-purple-500 border-dashed rounded-xl shadow-xl' />
                 </div>
               </section>
-              Made whit <IconCloudinary /> by AlejandroD.
+              <div className='flex text-xs gap-2 font-semibold'>
+                Made whit <IconCloudinary /> by AlejandroD.
+              </div>
             </div>
           </>
         )}
