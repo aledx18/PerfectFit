@@ -2,7 +2,7 @@ import { RoughNotation, RoughNotationGroup } from 'react-rough-notation'
 
 function Portada() {
   return (
-    <div className='md:flex-1 md:mr-20'>
+    <div className='md:flex-1 md:mr-20 lg:mt-0 md:mt-0 mt-96'>
       <RoughNotationGroup show>
         <h1 className='font-pt-serif text-2xl font-bold py-2 mb-2 md:mb-7 md:text-5xl'>
           <RoughNotation

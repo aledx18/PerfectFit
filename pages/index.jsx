@@ -23,13 +23,13 @@ export default function Homepage() {
         ) : (
           <>
             <div className='flex h-screen items-center justify-center flex-col pb-1'>
-              <section className='md:mt-0 md:h-screen flex flex-col justify-center text-center md:text-left md:flex-row md:justify-between md:items-center lg:px-48 md:px-12 px-4 bg-secondary'>
+              <section className='md:mt-0 md:h-screen flex flex-col justify-center text-center md:text-left md:flex-row md:justify-between md:items-center lg:px-48 md:px-12 px-4 bg-secondary mt-96'>
                 <Portada />
                 <div className='flex justify-around md:block mt-8 md:mt-0 md:flex-1'>
                   <Dropzone className='lg:py-auto lg:px-auto border-2 border-purple-500 border-dashed rounded-xl shadow-xl' />
                 </div>
               </section>
-              <div className='flex flex-row w-full text-xs justify-around items-center font-semibold'>
+              <div className='flex flex-col md:flex-row w-full text-xs justify-around items-center font-semibold'>
                 <span>© 2023 PerfectFit.</span>
 
                 <div className=' flex items-center gap-2'>

@@ -196,7 +196,7 @@ const Dropzone = ({ className }) => {
           </div>
         </div>
       </form>
-      <div className=' pt-1 flex flex-wrap flex-row items-center gap-2'>
+      <div className=' pt-1 flex md:flex-wrap md:flex-row md:items-center gap-2 flex-col'>
         {imagenExample.map((img) => (
           <Image
             key={img.id}
