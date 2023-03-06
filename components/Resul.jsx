@@ -24,7 +24,7 @@ import {
 
 export default function Resul() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(true)
   const [tab, setTab] = useState(0)
 
   const { imageOriginal, image, setImg, imgObject } = useFileStore()
@@ -44,7 +44,7 @@ export default function Resul() {
   }
 
   const myLoader = () => {
-    setImageLoaded(true)
+    setImageLoaded(false)
   }
 
   return (
@@ -439,7 +439,7 @@ export default function Resul() {
             <div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
               <div className='lg:col-span-3'>
                 <div className='flex text-center relative m-auto justify-center p-auto rounded-lg border-4 border-dashed border-purple-500/75 lg:h-full bg-slate-50'>
-                  {!imageLoaded && (
+                  {/* {!imageLoaded && (
                     <div
                       role='status'
                       className='space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center'
@@ -456,11 +456,11 @@ export default function Resul() {
                         </svg>
                       </div>
                     </div>
-                  )}
+                  )} */}
 
                   <Image
-                    src={image}
-                    width={400}
+                    src={imageLoaded ? '/dots.svg' : image}
+                    width={310}
                     height={900}
                     onLoad={myLoader}
                     alt='img'

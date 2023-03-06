@@ -121,7 +121,7 @@ const Dropzone = ({ className }) => {
               <>
                 <IconImg />
                 <p className='font-sans font-semibold'>
-                  Drag & drop Image here or
+                  Drag & drop Image here, or
                 </p>
                 <button
                   onClick={open}
