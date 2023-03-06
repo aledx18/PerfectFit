@@ -460,8 +460,8 @@ export default function Resul() {
 
                   <Image
                     src={imageLoaded ? '/dots.svg' : image}
-                    width={310}
-                    height={900}
+                    width={300}
+                    height={500}
                     onLoad={myLoader}
                     alt='img'
                     className='rounded-xl p-1 m-auto'
