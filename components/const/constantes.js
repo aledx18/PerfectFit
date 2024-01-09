@@ -1,9 +1,9 @@
 export const imagenExample = [
   {
-    src: 'https://asset.cloudinary.com/dpbhmwmwm/696f5f837c52e4c1423010dd5ae8dba0',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1677973367/wallpaperbetter.com_2560x1440_rmvrib.jpg',
     alt: 'pareja Img Playa',
     id: 0,
-    public_id: 'pareja_s9i1g3.jpg'
+    public_id: 'wallpaperbetter.com_2560x1440_rmvrib.jpg'
   },
   {
     id: 1,
