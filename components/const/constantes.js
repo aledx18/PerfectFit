@@ -1,6 +1,6 @@
 export const imagenExample = [
   {
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1677550644/pareja_s9i1g3.jpg',
+    src: 'https://asset.cloudinary.com/dpbhmwmwm/696f5f837c52e4c1423010dd5ae8dba0',
     alt: 'pareja Img Playa',
     id: 0,
     public_id: 'pareja_s9i1g3.jpg'
