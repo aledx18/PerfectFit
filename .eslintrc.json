@@ -1,9 +1,7 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "./node_modules/standard/eslintrc.json"
-    ],
-    "rules": {"space-before-function-paren":"off",
-  "multiline-ternary":"off"}
-    
+    "extends": [
+      "next/core-web-vitals",
+      "./node_modules/standard/eslintrc.json"
+      ],
+      "rules": {"space-before-function-paren":"off","multiline-ternary":"off","react/jsx-closing-bracket-location": "off","react/jsx-curly-newline" : "off", "indent":"off"}
 }

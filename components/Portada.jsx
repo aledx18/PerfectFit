@@ -11,8 +11,7 @@ function Portada() {
             color='#A855F7'
             animationDelay={900}
             animationDuration={1200}
-            order='1'
-          >
+            order='1'>
             Crop
           </RoughNotation>{' '}
           and{' '}
@@ -22,8 +21,7 @@ function Portada() {
             color='#A855F7'
             animationDelay={1400}
             animationDuration={1700}
-            order='2'
-          >
+            order='2'>
             Resize
           </RoughNotation>{' '}
           Your Images for Social Media
@@ -31,16 +29,15 @@ function Portada() {
         <p className='font-pt-serif font-normal text-md md:text-xl md:font-normal'>
           "PerfectFit" is a web application that allows users to crop and resize
           their images to fit perfectly on various social media platforms. Users
-          can quickly adjust their images to match the specific dimensions
-          required for{' '}
+          can quickly adjust their images to match the{' '}
           <RoughNotation
             type='underline'
             order='2'
             color='#A855F7'
-            strokeWidth='3px'
-          >
-            different social media
+            strokeWidth='3px'>
+            specific dimensions
           </RoughNotation>{' '}
+          required for different social media
         </p>
       </RoughNotationGroup>
     </div>

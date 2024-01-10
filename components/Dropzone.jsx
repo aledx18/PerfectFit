@@ -78,8 +78,7 @@ const Dropzone = ({ className }) => {
         <div
           {...getRootProps({
             className
-          })}
-        >
+          })}>
           <input {...getInputProps()} />
           <div className='flex flex-col items-center justify-center p-11'>
             {isDragActive ? (
@@ -97,8 +96,7 @@ const Dropzone = ({ className }) => {
                       key={file.name}
                       type='button'
                       className='flex hover:blur-sm flex-col transition-colors text-gray-black shadow-sm focus:outline-none font-medium rounded-lg text-sm '
-                      onClick={() => removeFile(file.name)}
-                    >
+                      onClick={() => removeFile(file.name)}>
                       <IconX />
                       <Image
                         src={file.preview}
@@ -125,8 +123,7 @@ const Dropzone = ({ className }) => {
                 </p>
                 <button
                   onClick={open}
-                  className='bg-purple-100 font-sans font-semibold rounded-md p-1'
-                >
+                  className='bg-purple-100 font-sans font-semibold rounded-md p-1'>
                   Click here
                 </button>
               </>
@@ -145,8 +142,7 @@ const Dropzone = ({ className }) => {
                   {rejected.map(({ file, errors }) => (
                     <li
                       key={file.name}
-                      className='flex justify-between items-center'
-                    >
+                      className='flex justify-between items-center'>
                       <div>
                         <p className='text-neutral-500 text-sm font-medium'>
                           {file.name}
@@ -161,8 +157,7 @@ const Dropzone = ({ className }) => {
                       <button
                         type='button'
                         className='text-gray-black border-2 border-purple-400 border-solid hover:bg-gray-200 focus:outline-none font-normal rounded-lg text-sm'
-                        onClick={() => removeRejected(file.name)}
-                      >
+                        onClick={() => removeRejected(file.name)}>
                         <IconX />
                       </button>
                     </li>
@@ -185,8 +180,7 @@ const Dropzone = ({ className }) => {
               ) : (
                 <button
                   type='submit'
-                  className='text-gray-black border-2 border-purple-600 border-solid hover:text-gray-50 hover:bg-purple-900/50 focus:outline-none font-medium rounded-lg text-sm px-6 py-2'
-                >
+                  className='text-gray-black border-2 border-purple-600 border-solid hover:text-gray-50 hover:bg-purple-900/50 focus:outline-none font-medium rounded-lg text-sm px-6 py-2'>
                   Upload
                 </button>
               )
@@ -196,7 +190,7 @@ const Dropzone = ({ className }) => {
           </div>
         </div>
       </form>
-      <div className=' pt-1 flex md:flex-wrap md:flex-row md:items-center gap-2 flex-col'>
+      <div className='pt-1 flex md:flex-wrap md:flex-row md:items-center gap-2 flex-col'>
         {imagenExample.map((img) => (
           <Image
             key={img.id}
@@ -208,7 +202,7 @@ const Dropzone = ({ className }) => {
             onClick={() => {
               imagenPrev(img)
             }}
-            className='rounded-md shadow-md filter grayscale hover:grayscale-0 w-auto h-auto cursor-pointer hover:rounded-md hover:scale-105'
+            className='rounded-md shadow-md w-auto max-h-40 cursor-pointer transition-all duration-300 transi hover:scale-105'
           />
         ))}
       </div>

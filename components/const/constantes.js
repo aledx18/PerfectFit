@@ -1,9 +1,9 @@
 export const imagenExample = [
   {
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1677973367/wallpaperbetter.com_2560x1440_rmvrib.jpg',
-    alt: 'pareja Img Playa',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704926685/photocm1j7d.jpg',
+    alt: 'cars',
     id: 0,
-    public_id: 'wallpaperbetter.com_2560x1440_rmvrib.jpg'
+    public_id: 'photocm1j7d.jpg'
   },
   {
     id: 1,
@@ -19,9 +19,15 @@ export const imagenExample = [
   },
   {
     id: 3,
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704919443/photoejsdn.jpg',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704927204/photonoa0h0.jpg',
     alt: 'Desktop',
-    public_id: 'photoejsdn.jpg'
+    public_id: 'photonoa0h0.jpg'
+  },
+  {
+    id: 4,
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704927362/photocnejwj.jpg',
+    alt: 'food',
+    public_id: 'photocnejwj.jpg'
   }
 ]
 
