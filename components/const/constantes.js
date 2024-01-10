@@ -7,21 +7,21 @@ export const imagenExample = [
   },
   {
     id: 1,
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1677550607/rudnik_axfb3e.jpg',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704919291/photopaq4q.jpg',
     alt: 'pareja Img Mirandose',
-    public_id: 'rudnik_axfb3e.jpg'
+    public_id: 'photopaq4q.jpg'
   },
   {
     id: 2,
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1677550653/masahiro_tmw609.jpg',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704919057/photol9g.jpg',
     alt: 'japan street',
-    public_id: 'masahiro_tmw609.jpg'
+    public_id: 'photol9g.jpg'
   },
   {
     id: 3,
-    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1676999351/cld-sample-5.jpg',
+    src: 'https://res.cloudinary.com/dpbhmwmwm/image/upload/v1704919443/photoejsdn.jpg',
     alt: 'Desktop',
-    public_id: 'cld-sample-5.jpg'
+    public_id: 'photoejsdn.jpg'
   }
 ]
 
